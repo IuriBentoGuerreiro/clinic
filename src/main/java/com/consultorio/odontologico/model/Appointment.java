@@ -1,5 +1,6 @@
 package com.consultorio.odontologico.model;
 
+import com.consultorio.odontologico.dto.AppointmentRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,8 +43,14 @@ public class Appointment {
     @OneToMany(mappedBy = "appointment")
     private List<ExpensesAndProfits> expensesAndProfits;
 
-    public static Appointment convert(){
-        //TODO fazer metodo build
-        return null;
+    public static Appointment convert(AppointmentRequest appointmentRequest){
+        return Appointment.builder()
+                .patient(appointmentRequest.getPatient())
+                .dentist(appointmentRequest.getDentist())
+                .payment(appointmentRequest.getPayment())
+                .dateAndTime(appointmentRequest.getDateAndTime())
+                .procedures(appointmentRequest.getProcedures())
+                .totalCost(appointmentRequest.getTotalCost())
+                .build();
     }
 }
