@@ -43,6 +43,7 @@ public class Patient {
                 .address(patientRequest.getAddress())
                 .phone(patientRequest.getPhone())
                 .email(patientRequest.getEmail())
+                .appointments(patientRequest.getAppointments())
                 .build();
     }
 }

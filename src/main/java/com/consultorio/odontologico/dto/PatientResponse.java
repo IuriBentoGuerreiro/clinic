@@ -1,10 +1,12 @@
 package com.consultorio.odontologico.dto;
 
+import com.consultorio.odontologico.model.Appointment;
 import com.consultorio.odontologico.model.Patient;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -16,6 +18,8 @@ public class PatientResponse {
     private String address;
     private String phone;
     private String email;
+    private List<Appointment> appointments;
+
 
     public static PatientResponse convert(Patient patient){
         return PatientResponse.builder()
