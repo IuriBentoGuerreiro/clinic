@@ -51,6 +51,7 @@ public class Appointment {
                 .dateAndTime(appointmentRequest.getDateAndTime())
                 .procedures(appointmentRequest.getProcedures())
                 .totalCost(appointmentRequest.getTotalCost())
+                .expensesAndProfits(appointmentRequest.getExpensesAndProfits())
                 .build();
     }
 }
