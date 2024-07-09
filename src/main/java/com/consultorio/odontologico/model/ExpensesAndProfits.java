@@ -1,6 +1,6 @@
 package com.consultorio.odontologico.model;
 
-import com.consultorio.odontologico.dto.ExpensesAndProfitsRequest;
+import com.consultorio.odontologico.dto.profit.ExpensesAndProfitsRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

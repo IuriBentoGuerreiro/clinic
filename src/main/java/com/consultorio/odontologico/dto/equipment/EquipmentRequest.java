@@ -1,4 +1,4 @@
-package com.consultorio.odontologico.dto;
+package com.consultorio.odontologico.dto.equipment;
 
 import com.consultorio.odontologico.model.Appointment;
 import lombok.Data;

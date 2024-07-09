@@ -1,4 +1,4 @@
-package com.consultorio.odontologico.dto;
+package com.consultorio.odontologico.dto.profit;
 
 import com.consultorio.odontologico.model.Appointment;
 import com.consultorio.odontologico.model.Equipment;

@@ -1,6 +1,6 @@
 package com.consultorio.odontologico.model;
 
-import com.consultorio.odontologico.dto.AppointmentRequest;
+import com.consultorio.odontologico.dto.appointment.AppointmentRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

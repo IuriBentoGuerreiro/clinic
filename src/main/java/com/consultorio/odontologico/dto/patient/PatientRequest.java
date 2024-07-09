@@ -1,18 +1,18 @@
-package com.consultorio.odontologico.dto;
+package com.consultorio.odontologico.dto.patient;
 
 import com.consultorio.odontologico.model.Appointment;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class DentistRequest {
+public class PatientRequest {
 
     private String name;
-    private String specialty;
-    private String crm;
+    private LocalDate dateBirth;
+    private String address;
     private String phone;
     private String email;
-    private String workingHours;
     private List<Appointment> appointments;
 }
