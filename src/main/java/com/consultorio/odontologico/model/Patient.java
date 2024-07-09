@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Table(name = "patient")
 @Entity
@@ -30,6 +31,9 @@ public class Patient {
     private String phone;
     @Column(name = "email")
     private String email;
+
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments;
 
     public static Patient convert(){
         //TODO fazer metodo build

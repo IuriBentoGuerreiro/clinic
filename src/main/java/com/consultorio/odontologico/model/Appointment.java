@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Table(name = "appoinment")
 @Entity
@@ -35,6 +36,11 @@ public class Appointment {
     private String procedures;
     @Column(name = "total_cost")
     private BigDecimal totalCost;
+
+    @ManyToMany
+    private List<Equipment> equipments;
+    @OneToMany(mappedBy = "appointment")
+    private List<ExpensesAndProfits> expensesAndProfits;
 
     public static Appointment convert(){
         //TODO fazer metodo build

@@ -30,7 +30,8 @@ public class Equipment {
     private BigDecimal acquisitionValue;
     @Column(name = "usage_estimate")
     private Integer usageEstimate;
-    @OneToMany
+
+    @ManyToMany(mappedBy = "equipments")
     private List<Appointment> appointment;
 
     public static Equipment convert(){
