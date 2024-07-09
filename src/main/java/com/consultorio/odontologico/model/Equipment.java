@@ -1,5 +1,6 @@
 package com.consultorio.odontologico.model;
 
+import com.consultorio.odontologico.dto.EquipmentRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,8 +35,13 @@ public class Equipment {
     @ManyToMany(mappedBy = "equipments")
     private List<Appointment> appointment;
 
-    public static Equipment convert(){
-        //TODO fazer metodo build
-        return null;
+    public static Equipment convert(EquipmentRequest equipmentRequest){
+        return Equipment.builder()
+                .name(equipmentRequest.getName())
+                .acquisitionDate(equipmentRequest.getAcquisitionDate())
+                .acquisitionValue(equipmentRequest.getAcquisitionValue())
+                .usageEstimate(equipmentRequest.getUsageEstimate())
+                .appointment(equipmentRequest.getAppointment())
+                .build();
     }
 }
