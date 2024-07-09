@@ -1,5 +1,6 @@
 package com.consultorio.odontologico.model;
 
+import com.consultorio.odontologico.dto.ExpensesAndProfitsRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,9 +35,13 @@ public class ExpensesAndProfits {
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 
-
-    public static ExpensesAndProfits convert(){
-        //TODO fazer metodo build
-        return null;
+    public static ExpensesAndProfits convert(ExpensesAndProfitsRequest expensesAndProfitsRequest){
+        return ExpensesAndProfits.builder()
+                .date(expensesAndProfitsRequest.getDate())
+                .type(expensesAndProfitsRequest.getType())
+                .description(expensesAndProfitsRequest.getDescription())
+                .appointment(expensesAndProfitsRequest.getAppointment())
+                .equipment(expensesAndProfitsRequest.getEquipment())
+                .build();
     }
 }
