@@ -37,6 +37,10 @@ public class Dentist {
     @OneToMany(mappedBy = "dentist")
     private List<Appointment> appointments;
 
+    public Dentist(Integer id){
+        this.id = id;
+    }
+
     public static Dentist convert(DentistRequest dentistRequest){
         return Dentist.builder()
                 .name(dentistRequest.getName())

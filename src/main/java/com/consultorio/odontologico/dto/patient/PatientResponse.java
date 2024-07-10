@@ -29,6 +29,7 @@ public class PatientResponse {
                 .address(patient.getAddress())
                 .phone(patient.getPhone())
                 .email(patient.getEmail())
+                .appointments(patient.getAppointments())
                 .build();
     }
 }

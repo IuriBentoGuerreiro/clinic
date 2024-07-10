@@ -1,9 +1,5 @@
 package com.consultorio.odontologico.dto.appointment;
 
-import com.consultorio.odontologico.model.Dentist;
-import com.consultorio.odontologico.model.Equipment;
-import com.consultorio.odontologico.model.ExpensesAndProfits;
-import com.consultorio.odontologico.model.Patient;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -13,12 +9,12 @@ import java.util.List;
 @Data
 public class AppointmentRequest {
 
-    private Patient patient;
-    private Dentist dentist;
+    private Integer patientId;
+    private Integer dentistId;
     private String payment;
     private LocalDateTime dateAndTime;
     private String procedures;
     private BigDecimal totalCost;
-    private List<Equipment> equipments;
-    private List<ExpensesAndProfits> expensesAndProfits;
+    private List<Integer> equipmentsId;
+    private List<Integer> expensesAndProfitsId;
 }

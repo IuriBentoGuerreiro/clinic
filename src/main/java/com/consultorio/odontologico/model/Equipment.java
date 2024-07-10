@@ -32,6 +32,10 @@ public class Equipment {
     @Column(name = "usage_estimate")
     private Integer usageEstimate;
 
+    public Equipment(Integer id){
+        this.id = id;
+    }
+
     @ManyToMany(mappedBy = "equipments")
     private List<Appointment> appointment;
 
@@ -41,7 +45,8 @@ public class Equipment {
                 .acquisitionDate(equipmentRequest.getAcquisitionDate())
                 .acquisitionValue(equipmentRequest.getAcquisitionValue())
                 .usageEstimate(equipmentRequest.getUsageEstimate())
-                .appointment(equipmentRequest.getAppointment())
+                .appointment(equipmentRequest.getAppointment().stream()
+                        .map(Appointment::convert).toList())
                 .build();
     }
 }

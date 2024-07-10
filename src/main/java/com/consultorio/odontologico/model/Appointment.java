@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Table(name = "appoinment")
+@Table(name = "appointment")
 @Entity
 @Data
 @Builder
@@ -25,8 +25,10 @@ public class Appointment {
     private Integer id;
 
     @ManyToOne
+    @JoinColumn(name = "patient_id")
     private Patient patient;
     @ManyToOne
+    @JoinColumn(name = "dentist_id")
     private Dentist dentist;
 
     @Column(name = "payment")
@@ -43,15 +45,22 @@ public class Appointment {
     @OneToMany(mappedBy = "appointment")
     private List<ExpensesAndProfits> expensesAndProfits;
 
+    public Appointment(Integer id){
+        this.id = id;
+    }
+
     public static Appointment convert(AppointmentRequest appointmentRequest){
         return Appointment.builder()
-                .patient(appointmentRequest.getPatient())
-                .dentist(appointmentRequest.getDentist())
+                .patient(new Patient(appointmentRequest.getPatientId()))
+                .dentist(new Dentist(appointmentRequest.getDentistId()))
                 .payment(appointmentRequest.getPayment())
                 .dateAndTime(appointmentRequest.getDateAndTime())
                 .procedures(appointmentRequest.getProcedures())
                 .totalCost(appointmentRequest.getTotalCost())
-                .expensesAndProfits(appointmentRequest.getExpensesAndProfits())
+                .equipments(appointmentRequest.getEquipmentsId().stream()
+                        .map(Equipment::new).toList())
+                .expensesAndProfits(appointmentRequest.getExpensesAndProfitsId().stream()
+                        .map(ExpensesAndProfits::new).toList())
                 .build();
     }
 }

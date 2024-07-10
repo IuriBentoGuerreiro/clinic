@@ -1,6 +1,6 @@
 package com.consultorio.odontologico.dto.equipment;
 
-import com.consultorio.odontologico.model.Appointment;
+import com.consultorio.odontologico.dto.appointment.AppointmentRequest;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -14,5 +14,5 @@ public class EquipmentRequest {
     private LocalDate acquisitionDate;
     private BigDecimal acquisitionValue;
     private Integer usageEstimate;
-    private List<Appointment> appointment;
+    private List<AppointmentRequest> appointment;
 }

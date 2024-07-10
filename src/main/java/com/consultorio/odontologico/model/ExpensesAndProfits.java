@@ -35,13 +35,17 @@ public class ExpensesAndProfits {
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 
+    public ExpensesAndProfits(Integer id){
+        this.id = id;
+    }
+
     public static ExpensesAndProfits convert(ExpensesAndProfitsRequest expensesAndProfitsRequest){
         return ExpensesAndProfits.builder()
                 .date(expensesAndProfitsRequest.getDate())
                 .type(expensesAndProfitsRequest.getType())
                 .description(expensesAndProfitsRequest.getDescription())
-                .appointment(expensesAndProfitsRequest.getAppointment())
-                .equipment(expensesAndProfitsRequest.getEquipment())
+                .appointment(new Appointment(expensesAndProfitsRequest.getAppointmentId()))
+                .equipment(new Equipment(expensesAndProfitsRequest.getEquipmentId()))
                 .build();
     }
 }

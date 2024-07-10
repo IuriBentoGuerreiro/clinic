@@ -36,6 +36,10 @@ public class Patient {
     @OneToMany(mappedBy = "patient")
     private List<Appointment> appointments;
 
+    public Patient(Integer id){
+        this.id = id;
+    }
+
     public static Patient convert(PatientRequest patientRequest){
         return Patient.builder()
                 .name(patientRequest.getName())
@@ -43,7 +47,8 @@ public class Patient {
                 .address(patientRequest.getAddress())
                 .phone(patientRequest.getPhone())
                 .email(patientRequest.getEmail())
-                .appointments(patientRequest.getAppointments())
+                .appointments(patientRequest.getAppointment().stream()
+                        .map(Appointment::convert).toList())
                 .build();
     }
 }
