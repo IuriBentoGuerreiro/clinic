@@ -1,6 +1,6 @@
 package com.consultorio.odontologico.model;
 
-import com.consultorio.odontologico.dto.profit.ExpensesAndProfitsRequest;
+import com.consultorio.odontologico.dto.profit.ExpensesAndProfitRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ExpensesAndProfits {
+public class ExpensesAndProfit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,12 +35,12 @@ public class ExpensesAndProfits {
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 
-    public ExpensesAndProfits(Integer id){
+    public ExpensesAndProfit(Integer id){
         this.id = id;
     }
 
-    public static ExpensesAndProfits convert(ExpensesAndProfitsRequest expensesAndProfitsRequest){
-        return ExpensesAndProfits.builder()
+    public static ExpensesAndProfit convert(ExpensesAndProfitRequest expensesAndProfitsRequest){
+        return ExpensesAndProfit.builder()
                 .date(expensesAndProfitsRequest.getDate())
                 .type(expensesAndProfitsRequest.getType())
                 .description(expensesAndProfitsRequest.getDescription())

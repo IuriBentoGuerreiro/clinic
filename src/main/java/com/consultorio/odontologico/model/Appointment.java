@@ -1,6 +1,7 @@
 package com.consultorio.odontologico.model;
 
 import com.consultorio.odontologico.dto.appointment.AppointmentRequest;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,9 +27,11 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name = "patient_id")
+    @JsonBackReference
     private Patient patient;
     @ManyToOne
     @JoinColumn(name = "dentist_id")
+    @JsonBackReference
     private Dentist dentist;
 
     @Column(name = "payment")
@@ -41,9 +44,11 @@ public class Appointment {
     private BigDecimal totalCost;
 
     @ManyToMany
+    @JsonBackReference
     private List<Equipment> equipments;
     @OneToMany(mappedBy = "appointment")
-    private List<ExpensesAndProfits> expensesAndProfits;
+    @JsonBackReference
+    private List<ExpensesAndProfit> expensesAndProfits;
 
     public Appointment(Integer id){
         this.id = id;
@@ -60,7 +65,7 @@ public class Appointment {
                 .equipments(appointmentRequest.getEquipmentsId().stream()
                         .map(Equipment::new).toList())
                 .expensesAndProfits(appointmentRequest.getExpensesAndProfitsId().stream()
-                        .map(ExpensesAndProfits::new).toList())
+                        .map(ExpensesAndProfit::new).toList())
                 .build();
     }
 }

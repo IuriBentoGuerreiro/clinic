@@ -2,7 +2,7 @@ package com.consultorio.odontologico.dto.profit;
 
 import com.consultorio.odontologico.model.Appointment;
 import com.consultorio.odontologico.model.Equipment;
-import com.consultorio.odontologico.model.ExpensesAndProfits;
+import com.consultorio.odontologico.model.ExpensesAndProfit;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Data
 @Builder
-public class ExpensesAndProfitsResponse {
+public class ExpensesAndProfitResponse {
 
     private Integer id;
     private LocalDate date;
@@ -19,8 +19,8 @@ public class ExpensesAndProfitsResponse {
     private Appointment appointment;
     private Equipment equipment;
 
-    public static ExpensesAndProfitsResponse convert(ExpensesAndProfits expensesAndProfits){
-        return ExpensesAndProfitsResponse.builder()
+    public static ExpensesAndProfitResponse convert(ExpensesAndProfit expensesAndProfits){
+        return ExpensesAndProfitResponse.builder()
                 .id(expensesAndProfits.getId())
                 .date(expensesAndProfits.getDate())
                 .type(expensesAndProfits.getType())

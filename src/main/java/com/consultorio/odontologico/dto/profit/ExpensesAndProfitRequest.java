@@ -1,12 +1,11 @@
 package com.consultorio.odontologico.dto.profit;
 
-import com.consultorio.odontologico.model.Appointment;
 import lombok.Data;
 
 import java.time.LocalDate;
 
 @Data
-public class ExpensesAndProfitsRequest {
+public class ExpensesAndProfitRequest {
 
     private LocalDate date;
     private String type;
