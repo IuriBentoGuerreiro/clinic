@@ -4,10 +4,13 @@ import com.consultorio.odontologico.dto.appointment.AppointmentRequest;
 import com.consultorio.odontologico.dto.appointment.AppointmentResponse;
 import com.consultorio.odontologico.model.Appointment;
 import com.consultorio.odontologico.repository.AppointmentRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class AppointmentService {
@@ -44,5 +47,26 @@ public class AppointmentService {
                 .build());
 
         return AppointmentResponse.convert(appointment);
+    }
+
+    public List<AppointmentResponse> findAll(){
+        return appointmentRepository.findAll().stream()
+                .map(AppointmentResponse::convert).toList();
+    }
+
+    public Appointment findById(Integer id){
+        return appointmentRepository.findById(id).orElseThrow(
+                ()-> new NotFoundException("Not found")
+        );
+    }
+
+    public Appointment update(Integer id, AppointmentRequest appointmentRequest){
+        var appointmentSave = findById(id);
+        BeanUtils.copyProperties(appointmentRequest, appointmentSave, "id");
+        return appointmentRepository.save(appointmentSave);
+    }
+
+    public void deleteById(Integer id){
+        appointmentRepository.deleteById(id);
     }
 }

@@ -4,10 +4,9 @@ import com.consultorio.odontologico.dto.appointment.AppointmentRequest;
 import com.consultorio.odontologico.dto.appointment.AppointmentResponse;
 import com.consultorio.odontologico.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/appointment")
@@ -19,5 +18,25 @@ public class AppointmentController {
     @PostMapping
     public AppointmentResponse save(@RequestBody AppointmentRequest appointmentRequest){
         return appointmentService.save(appointmentRequest);
+    }
+
+    @GetMapping
+    public List<AppointmentResponse> findAll(){
+        return appointmentService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public AppointmentResponse findById(@PathVariable Integer id){
+        return AppointmentResponse.convert(appointmentService.findById(id));
+    }
+
+    @PutMapping("/{id}")
+    public AppointmentResponse update(@PathVariable Integer id, @RequestBody AppointmentRequest appointmentRequest){
+        return AppointmentResponse.convert(appointmentService.update(id, appointmentRequest));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Integer id){
+        appointmentService.deleteById(id);
     }
 }
