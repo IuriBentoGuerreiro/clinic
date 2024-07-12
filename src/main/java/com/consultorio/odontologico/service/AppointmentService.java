@@ -66,6 +66,14 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
     }
 
+    public Appointment addAppointmentToEquipment(Integer idEquipment, AppointmentRequest appointmentRequest){
+        var equipment = equipmentService.findById(idEquipment);
+        var appointment = addAppointment(appointmentRequest);
+        equipment.getAppointment().add(appointment);
+
+        return appointmentRepository.save(appointment);
+    }
+
     public List<AppointmentResponse> findAll(){
         return appointmentRepository.findAll().stream()
                 .map(AppointmentResponse::convert).toList();
@@ -85,5 +93,20 @@ public class AppointmentService {
 
     public void deleteById(Integer id){
         appointmentRepository.deleteById(id);
+    }
+
+    private Appointment addAppointment(AppointmentRequest appointmentRequest){
+        var appointment = Appointment.builder()
+                .patient(patientService.findById(appointmentRequest.getPatientId()))
+                .dentist(dentistService.findById(appointmentRequest.getDentistId()))
+                .procedures(appointmentRequest.getProcedures())
+                .totalCost(appointmentRequest.getTotalCost())
+                .payment(appointmentRequest.getPayment())
+                .dateAndTime(LocalDateTime.now())
+                .equipments(equipmentService.findAllById(appointmentRequest.getEquipmentsId()))
+                .expensesAndProfits(expensesAndProftService.findAllById(appointmentRequest.getExpensesAndProfitsId()))
+                .build();
+
+        return appointmentRepository.save(appointment);
     }
 }

@@ -23,10 +23,16 @@ public class AppointmentController {
     }
 
     @PostMapping("/patient/{idPatient}")
-    public AppointmentResponse addAppointmentToPatient(@PathVariable Integer idPatient, @RequestBody AppointmentRequest appointmentRequest){
+    public AppointmentResponse addAppointmentToPatient(@PathVariable Integer idPatient,
+                                                       @RequestBody AppointmentRequest appointmentRequest){
         return AppointmentResponse.convert(appointmentService.addAppointmentToPatient(idPatient, appointmentRequest));
     }
 
+    @PostMapping("/equipment/{idEquipment}")
+    public AppointmentResponse addAppointmentToEquipment(@PathVariable Integer idEquipment,
+                                                         @RequestBody AppointmentRequest appointmentRequest){
+        return AppointmentResponse.convert(appointmentService.addAppointmentToEquipment(idEquipment, appointmentRequest));
+    }
     @GetMapping
     public List<AppointmentResponse> findAll(){
         return appointmentService.findAll();

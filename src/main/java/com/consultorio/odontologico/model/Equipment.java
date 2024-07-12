@@ -45,8 +45,6 @@ public class Equipment {
                 .acquisitionDate(equipmentRequest.getAcquisitionDate())
                 .acquisitionValue(equipmentRequest.getAcquisitionValue())
                 .usageEstimate(equipmentRequest.getUsageEstimate())
-                .appointment(equipmentRequest.getAppointment().stream()
-                        .map(Appointment::convert).toList())
                 .build();
     }
 }
