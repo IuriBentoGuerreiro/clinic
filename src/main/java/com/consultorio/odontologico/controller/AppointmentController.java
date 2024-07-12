@@ -22,6 +22,11 @@ public class AppointmentController {
         return appointmentService.save(appointmentRequest);
     }
 
+    @PostMapping("/patient/{idPatient}")
+    public AppointmentResponse addAppointmentToPatient(@PathVariable Integer idPatient, @RequestBody AppointmentRequest appointmentRequest){
+        return AppointmentResponse.convert(appointmentService.addAppointmentToPatient(idPatient, appointmentRequest));
+    }
+
     @GetMapping
     public List<AppointmentResponse> findAll(){
         return appointmentService.findAll();

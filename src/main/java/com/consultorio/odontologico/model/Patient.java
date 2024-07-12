@@ -47,8 +47,6 @@ public class Patient {
                 .address(patientRequest.getAddress())
                 .phone(patientRequest.getPhone())
                 .email(patientRequest.getEmail())
-                .appointments(patientRequest.getAppointment().stream()
-                        .map(Appointment::convert).toList())
                 .build();
     }
 }

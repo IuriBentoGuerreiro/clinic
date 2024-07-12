@@ -2,13 +2,11 @@ package com.consultorio.odontologico.service;
 
 import com.consultorio.odontologico.dto.patient.PatientRequest;
 import com.consultorio.odontologico.dto.patient.PatientResponse;
-import com.consultorio.odontologico.model.Appointment;
 import com.consultorio.odontologico.model.Patient;
 import com.consultorio.odontologico.repository.PatientRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.webjars.NotFoundException;
 
 import java.util.List;
@@ -30,8 +28,6 @@ public class PatientService {
                         .email(patientRequest.getEmail())
                         .address(patientRequest.getAddress())
                         .dateBirth(patientRequest.getDateBirth())
-                        .appointments(patientRequest.getAppointment().stream()
-                                .map(Appointment::convert).toList())
                 .build());
 
         return PatientResponse.convert(patient);
