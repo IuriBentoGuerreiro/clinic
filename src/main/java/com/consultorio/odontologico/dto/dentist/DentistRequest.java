@@ -1,6 +1,6 @@
 package com.consultorio.odontologico.dto.dentist;
 
-import com.consultorio.odontologico.model.Appointment;
+import com.consultorio.odontologico.dto.appointment.AppointmentRequest;
 import lombok.Data;
 
 import java.util.List;
@@ -14,5 +14,5 @@ public class DentistRequest {
     private String phone;
     private String email;
     private String workingHours;
-    private List<Appointment> appointments;
+    private List<AppointmentRequest> appointments;
 }
