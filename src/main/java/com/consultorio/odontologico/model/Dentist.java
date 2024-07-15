@@ -1,6 +1,8 @@
 package com.consultorio.odontologico.model;
 
 import com.consultorio.odontologico.dto.dentist.DentistRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +37,7 @@ public class Dentist {
     private String workingHours;
 
     @OneToMany(mappedBy = "dentist")
+    @JsonIgnore
     private List<Appointment> appointments;
 
     public Dentist(Integer id){

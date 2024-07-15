@@ -35,17 +35,7 @@ public class AppointmentService {
     }
 
     public AppointmentResponse save(AppointmentRequest appointmentRequest){
-        var appointment = appointmentRepository.save(Appointment.builder()
-                        .patient(patientService.findById(appointmentRequest.getPatientId()))
-                        .dentist(dentistService.findById(appointmentRequest.getDentistId()))
-                        .procedures(appointmentRequest.getProcedures())
-                        .totalCost(appointmentRequest.getTotalCost())
-                        .payment(appointmentRequest.getPayment())
-                        .dateAndTime(LocalDateTime.now())
-                        .equipments(equipmentService.findAllById(appointmentRequest.getEquipmentsId()))
-                        .expensesAndProfits(expensesAndProftService.findAllById(appointmentRequest.getExpensesAndProfitsId()))
-                .build());
-
+        var appointment = addAppointment(appointmentRequest);
         return AppointmentResponse.convert(appointment);
     }
 

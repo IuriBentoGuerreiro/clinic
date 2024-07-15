@@ -1,6 +1,7 @@
 package com.consultorio.odontologico.model;
 
 import com.consultorio.odontologico.dto.equipment.EquipmentRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,6 +38,7 @@ public class Equipment {
     }
 
     @ManyToMany(mappedBy = "equipments")
+    @JsonIgnore
     private List<Appointment> appointment;
 
     public static Equipment convert(EquipmentRequest equipmentRequest){

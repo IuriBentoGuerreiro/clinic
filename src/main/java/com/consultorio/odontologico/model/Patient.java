@@ -1,6 +1,7 @@
 package com.consultorio.odontologico.model;
 
 import com.consultorio.odontologico.dto.patient.PatientRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,6 +35,7 @@ public class Patient {
     private String email;
 
     @OneToMany(mappedBy = "patient")
+    @JsonIgnore
     private List<Appointment> appointments;
 
     public Patient(Integer id){
