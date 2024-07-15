@@ -19,7 +19,7 @@ public class AppointmentService {
     private final PatientService patientService;
     private final DentistService dentistService;
     private final EquipmentService equipmentService;
-    private final ExpensesAndProfitService expensesAndProftService;
+    private final ExpensesAndProfitService expensesAndProfitService;
 
     @Autowired
     public AppointmentService(AppointmentRepository appointmentRepository,
@@ -31,7 +31,7 @@ public class AppointmentService {
         this.patientService = patientService;
         this.dentistService = dentistService;
         this.equipmentService = equipmentService;
-        this.expensesAndProftService = expensesAndProftService;
+        this.expensesAndProfitService = expensesAndProftService;
     }
 
     public AppointmentResponse save(AppointmentRequest appointmentRequest){
@@ -43,7 +43,7 @@ public class AppointmentService {
                 .payment(appointmentRequest.getPayment())
                 .dateAndTime(LocalDateTime.now())
                 .equipments(equipmentService.findAllById(appointmentRequest.getEquipmentsId()))
-                .expensesAndProfits(expensesAndProftService.findAllById(appointmentRequest.getExpensesAndProfitsId()))
+                .expensesAndProfits(expensesAndProfitService.findAllById(appointmentRequest.getExpensesAndProfitsId()))
                 .build());
 
         return AppointmentResponse.convert(appointment);
@@ -68,20 +68,5 @@ public class AppointmentService {
 
     public void deleteById(Integer id){
         appointmentRepository.deleteById(id);
-    }
-
-    private Appointment addAppointment(AppointmentRequest appointmentRequest){
-        var appointment = Appointment.builder()
-                .patient(patientService.findById(appointmentRequest.getPatientId()))
-                .dentist(dentistService.findById(appointmentRequest.getDentistId()))
-                .procedures(appointmentRequest.getProcedures())
-                .totalCost(appointmentRequest.getTotalCost())
-                .payment(appointmentRequest.getPayment())
-                .dateAndTime(LocalDateTime.now())
-                .equipments(equipmentService.findAllById(appointmentRequest.getEquipmentsId()))
-                .expensesAndProfits(expensesAndProftService.findAllById(appointmentRequest.getExpensesAndProfitsId()))
-                .build();
-
-        return appointmentRepository.save(appointment);
     }
 }
