@@ -19,14 +19,14 @@ public class AppointmentService {
     private final PatientService patientService;
     private final DentistService dentistService;
     private final EquipmentService equipmentService;
-    private final ExpensesAndProftService expensesAndProftService;
+    private final ExpensesAndProfitService expensesAndProftService;
 
     @Autowired
     public AppointmentService(AppointmentRepository appointmentRepository,
                               PatientService patientService,
                               DentistService dentistService,
                               EquipmentService equipmentService,
-                              ExpensesAndProftService expensesAndProftService) {
+                              ExpensesAndProfitService expensesAndProftService) {
         this.appointmentRepository = appointmentRepository;
         this.patientService = patientService;
         this.dentistService = dentistService;
@@ -35,13 +35,7 @@ public class AppointmentService {
     }
 
     public AppointmentResponse save(AppointmentRequest appointmentRequest){
-        var appointment = addAppointment(appointmentRequest);
-        return AppointmentResponse.convert(appointment);
-    }
-
-    public Appointment addAppointmentToPatient(Integer idPatient, AppointmentRequest appointmentRequest){
-        var patient = patientService.findById(idPatient);
-        var appointment = Appointment.builder()
+        var appointment = appointmentRepository.save(Appointment.builder()
                 .patient(patientService.findById(appointmentRequest.getPatientId()))
                 .dentist(dentistService.findById(appointmentRequest.getDentistId()))
                 .procedures(appointmentRequest.getProcedures())
@@ -50,18 +44,9 @@ public class AppointmentService {
                 .dateAndTime(LocalDateTime.now())
                 .equipments(equipmentService.findAllById(appointmentRequest.getEquipmentsId()))
                 .expensesAndProfits(expensesAndProftService.findAllById(appointmentRequest.getExpensesAndProfitsId()))
-                .build();
-        appointment.setPatient(patient);
+                .build());
 
-        return appointmentRepository.save(appointment);
-    }
-
-    public Appointment addAppointmentToEquipment(Integer idEquipment, AppointmentRequest appointmentRequest){
-        var equipment = equipmentService.findById(idEquipment);
-        var appointment = addAppointment(appointmentRequest);
-        equipment.getAppointment().add(appointment);
-
-        return appointmentRepository.save(appointment);
+        return AppointmentResponse.convert(appointment);
     }
 
     public List<AppointmentResponse> findAll(){

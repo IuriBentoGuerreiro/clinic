@@ -52,8 +52,6 @@ public class Dentist {
                 .phone(dentistRequest.getPhone())
                 .email(dentistRequest.getEmail())
                 .workingHours(dentistRequest.getWorkingHours())
-                .appointments(dentistRequest.getAppointments().stream()
-                        .map(Appointment::convert).toList())
                 .build();
     }
 }
