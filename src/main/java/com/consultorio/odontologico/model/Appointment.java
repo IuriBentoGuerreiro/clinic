@@ -25,11 +25,11 @@ public class Appointment {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "patient_id")
     @JsonBackReference
     private Patient patient;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "dentist_id")
     @JsonBackReference
     private Dentist dentist;
