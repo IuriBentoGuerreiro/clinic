@@ -64,8 +64,6 @@ public class Appointment {
                 .totalCost(appointmentRequest.getTotalCost())
                 .equipments(appointmentRequest.getEquipmentsId().stream()
                         .map(Equipment::new).toList())
-                .expensesAndProfits(appointmentRequest.getExpensesAndProfitsId().stream()
-                        .map(ExpensesAndProfit::new).toList())
                 .build();
     }
 }

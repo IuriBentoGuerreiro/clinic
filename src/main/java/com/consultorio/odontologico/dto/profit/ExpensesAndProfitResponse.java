@@ -6,6 +6,7 @@ import com.consultorio.odontologico.model.ExpensesAndProfit;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -18,6 +19,7 @@ public class ExpensesAndProfitResponse {
     private String description;
     private Appointment appointment;
     private Equipment equipment;
+    private BigDecimal profits;
 
     public static ExpensesAndProfitResponse convert(ExpensesAndProfit expensesAndProfits){
         return ExpensesAndProfitResponse.builder()
@@ -27,6 +29,7 @@ public class ExpensesAndProfitResponse {
                 .description(expensesAndProfits.getDescription())
                 .appointment(expensesAndProfits.getAppointment())
                 .equipment(expensesAndProfits.getEquipment())
+                .profits(expensesAndProfits.getProfit())
                 .build();
     }
 }

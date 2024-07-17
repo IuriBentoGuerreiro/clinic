@@ -16,5 +16,4 @@ public class AppointmentRequest {
     private String procedures;
     private BigDecimal totalCost;
     private List<Integer> equipmentsId;
-    private List<Integer> expensesAndProfitsId;
 }

@@ -6,6 +6,7 @@ import com.consultorio.odontologico.model.Appointment;
 import com.consultorio.odontologico.repository.AppointmentRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -26,7 +27,7 @@ public class AppointmentService {
                               PatientService patientService,
                               DentistService dentistService,
                               EquipmentService equipmentService,
-                              ExpensesAndProfitService expensesAndProftService) {
+                              @Lazy ExpensesAndProfitService expensesAndProftService) {
         this.appointmentRepository = appointmentRepository;
         this.patientService = patientService;
         this.dentistService = dentistService;
@@ -43,7 +44,6 @@ public class AppointmentService {
                 .payment(appointmentRequest.getPayment())
                 .dateAndTime(LocalDateTime.now())
                 .equipments(equipmentService.findAllById(appointmentRequest.getEquipmentsId()))
-                .expensesAndProfits(expensesAndProfitService.findAllById(appointmentRequest.getExpensesAndProfitsId()))
                 .build());
 
         return AppointmentResponse.convert(appointment);

@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Table(name = "expenses_and_profits")
@@ -28,6 +29,8 @@ public class ExpensesAndProfit {
     @Column(name = "description")
     private String description;
 
+    private BigDecimal profit;
+
     @ManyToOne
     @JoinColumn(name = "appointment_id")
     private Appointment appointment;
@@ -41,9 +44,6 @@ public class ExpensesAndProfit {
 
     public static ExpensesAndProfit convert(ExpensesAndProfitRequest expensesAndProfitsRequest){
         return ExpensesAndProfit.builder()
-                .date(expensesAndProfitsRequest.getDate())
-                .type(expensesAndProfitsRequest.getType())
-                .description(expensesAndProfitsRequest.getDescription())
                 .appointment(new Appointment(expensesAndProfitsRequest.getAppointmentId()))
                 .equipment(new Equipment(expensesAndProfitsRequest.getEquipmentId()))
                 .build();

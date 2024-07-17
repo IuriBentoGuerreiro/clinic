@@ -20,7 +20,6 @@ public class AppointmentResponse {
     private String procedures;
     private BigDecimal totalCost;
     private List<Equipment> equipments;
-    private List<ExpensesAndProfit> expensesAndProfits;
 
     public static AppointmentResponse convert(Appointment appointment){
         return AppointmentResponse.builder()
@@ -32,7 +31,6 @@ public class AppointmentResponse {
                 .procedures(appointment.getProcedures())
                 .totalCost(appointment.getTotalCost())
                 .equipments(appointment.getEquipments())
-                .expensesAndProfits(appointment.getExpensesAndProfits())
                 .build();
     }
 }
