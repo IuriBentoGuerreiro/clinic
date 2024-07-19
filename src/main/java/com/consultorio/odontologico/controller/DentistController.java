@@ -4,6 +4,7 @@ import com.consultorio.odontologico.dto.dentist.DentistRequest;
 import com.consultorio.odontologico.dto.dentist.DentistResponse;
 import com.consultorio.odontologico.service.DentistService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class DentistController {
     private DentistService dentistService;
 
     @PostMapping
-    public DentistResponse save(@RequestBody DentistRequest dentistRequest){
+    public DentistResponse save(@RequestBody @Valid DentistRequest dentistRequest){
         return dentistService.save(dentistRequest);
     }
 
@@ -33,7 +34,7 @@ public class DentistController {
     }
 
     @PutMapping("/{id}")
-    public DentistResponse update(@PathVariable Integer id, @RequestBody DentistRequest dentistRequest){
+    public DentistResponse update(@PathVariable Integer id, @RequestBody @Valid DentistRequest dentistRequest){
         return DentistResponse.convert(dentistService.update(id, dentistRequest));
     }
 

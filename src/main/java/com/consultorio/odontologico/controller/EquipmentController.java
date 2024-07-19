@@ -4,6 +4,7 @@ import com.consultorio.odontologico.dto.equipment.EquipmentRequest;
 import com.consultorio.odontologico.dto.equipment.EquipmentResponse;
 import com.consultorio.odontologico.service.EquipmentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class EquipmentController {
     private EquipmentService equipmentService;
 
     @PostMapping
-    public EquipmentResponse save(@RequestBody EquipmentRequest equipmentRequest){
+    public EquipmentResponse save(@RequestBody @Valid EquipmentRequest equipmentRequest){
         return equipmentService.save(equipmentRequest);
     }
 
@@ -33,7 +34,7 @@ public class EquipmentController {
     }
 
     @PutMapping("/{id}")
-    public EquipmentResponse update(@PathVariable Integer id, @RequestBody EquipmentRequest equipmentRequest){
+    public EquipmentResponse update(@PathVariable Integer id, @RequestBody @Valid EquipmentRequest equipmentRequest){
         return EquipmentResponse.convert(equipmentService.update(id, equipmentRequest));
     }
 

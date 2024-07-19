@@ -4,6 +4,7 @@ import com.consultorio.odontologico.dto.appointment.AppointmentRequest;
 import com.consultorio.odontologico.dto.appointment.AppointmentResponse;
 import com.consultorio.odontologico.service.AppointmentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class AppointmentController {
     private AppointmentService appointmentService;
 
     @PostMapping
-    public AppointmentResponse save(@RequestBody AppointmentRequest appointmentRequest){
+    public AppointmentResponse save(@RequestBody @Valid AppointmentRequest appointmentRequest){
         return appointmentService.save(appointmentRequest);
     }
 
@@ -33,7 +34,7 @@ public class AppointmentController {
     }
 
     @PutMapping("/{id}")
-    public AppointmentResponse update(@PathVariable Integer id, @RequestBody AppointmentRequest appointmentRequest){
+    public AppointmentResponse update(@PathVariable Integer id, @RequestBody @Valid AppointmentRequest appointmentRequest){
         return AppointmentResponse.convert(appointmentService.update(id, appointmentRequest));
     }
 
