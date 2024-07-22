@@ -20,8 +20,18 @@ public class ExpensesAndProfitController {
         return service.getProfitByEquipment(idEquipment);
     }
 
-    @GetMapping
+    @GetMapping("/expenses")
     public String getAllExpense(){
         return service.getAllExpense();
+    }
+
+    @GetMapping("/cost")
+    public String getAllProfit(){
+        return service.getAllProfit();
+    }
+
+    @GetMapping("/expensesAndProfits")
+    public String getAllExpensesProfit(){
+        return service.getAllExpensesProfit();
     }
 }
