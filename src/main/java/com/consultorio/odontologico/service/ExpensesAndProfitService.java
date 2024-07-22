@@ -1,5 +1,6 @@
 package com.consultorio.odontologico.service;
 
+import com.consultorio.odontologico.dto.equipment.EquipmentResponse;
 import com.consultorio.odontologico.model.Appointment;
 import com.consultorio.odontologico.repository.ExpensesAndProfitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +26,13 @@ public class ExpensesAndProfitService {
 
         return totalAppointmentsCost.subtract(equipment.getAcquisitionValue());
     }
+
+    public String getAllExpense() {
+        var totalCostEquipment = equipmentService.findAll().stream()
+                .map(EquipmentResponse::getAcquisitionValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return "Expenses equipments: " + totalCostEquipment;
+    }
+
 }

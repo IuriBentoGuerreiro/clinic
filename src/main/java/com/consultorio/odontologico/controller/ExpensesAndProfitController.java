@@ -19,4 +19,9 @@ public class ExpensesAndProfitController {
     public BigDecimal getProfitByEquipment(Integer idEquipment){
         return service.getProfitByEquipment(idEquipment);
     }
+
+    @GetMapping
+    public String getAllExpense(){
+        return service.getAllExpense();
+    }
 }
