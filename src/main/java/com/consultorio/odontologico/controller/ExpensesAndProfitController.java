@@ -18,7 +18,7 @@ public class ExpensesAndProfitController {
         return service.getAllExpense();
     }
 
-    @GetMapping("/cost")
+    @GetMapping("/netProfit")
     public String getAllProfit(){
         return service.getAllProfit();
     }

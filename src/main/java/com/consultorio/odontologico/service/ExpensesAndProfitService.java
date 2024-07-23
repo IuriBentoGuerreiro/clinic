@@ -41,7 +41,7 @@ public class ExpensesAndProfitService {
                 .map(AppointmentResponse::getTotalCost)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        return "Expenses and Profits: " + totalCostAppointment.subtract(totalCostEquipment);
+        return "net profit: " + totalCostAppointment.subtract(totalCostEquipment);
     }
 
 }
